@@ -35,7 +35,7 @@ public class Persona {
 	@PrePersist
 	protected void onCreate() {
 		fechaCreacion = new Date();
-		fechaModificacion = new Date();
+
 	}
 
 	@PreUpdate
