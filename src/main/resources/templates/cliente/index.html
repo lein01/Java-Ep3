@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" th:href="@{../style.css}">
+</head>
+<body>
+<h1>Clientes</h1>
+<div>
+    <form th:action="@{/cliente}" method="post" th:object="${cliente}">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"/>
+        <label for="apellido">Apellidos:</label>
+        <input type="text" id="apellido" name="apellido"/>
+        <label for="correo">Correo:</label>
+        <input type="text" id="correo" name="correo"/>
+        <label for="celular">Celular:</label>
+        <input type="text" id="celular" name="celular"/>
+        <br>
+        <button type="submit">Registrar</button>
+    </form>
+</div>
+
+
+<table th:if="${!cliente.isEmpty()}">
+    <tr>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Correo</th>
+        <th>Celular</th>
+    </tr>
+
+
+    <tr th:each = "item : ${cliente}">
+        <td th:text="${item.getnombre}"></td>
+        <td th:text="${item.apellido}"></td>
+        <td th:text="${item.correo}"></td>
+        <td th:text="${item.celular}"></td>
+
+
+        <td>
+            <a th:href="@{/cliente/editar(id=${item.id})}">
+                <button type="button">Editar</button>
+            </a>
+        </td>
+
+        <td>
+            <form th:action="@{/cliente/eliminar(id=${item.id})}" th:method="delete">
+                <button type="submit">Eliminar</button>
+            </form>
+        </td>
+
+
+    </tr>
+
+</table>
+
+
+
+</body>
+</html>
